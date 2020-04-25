@@ -1,0 +1,7 @@
+data/org.emilien.Password.desktop.in
+data/org.emilien.Password.appdata.xml.in
+data/org.emilien.Password.gschema.xml
+src/window.ui
+src/main.vala
+src/window.vala
+
