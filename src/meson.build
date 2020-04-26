@@ -1,6 +1,8 @@
 password_sources = [
   'main.vala',
   'window.vala',
+  'mdpCalcul.vala',
+  'mdpAleatoire.vala',
 ]
 
 password_deps = [
@@ -15,7 +17,12 @@ password_sources += gnome.compile_resources('password-resources',
   c_name: 'password'
 )
 
+password_vala_args = [
+	'--target-glib=2.50',
+	'--vapidir', meson.current_source_dir(),
+]
+
 executable('password', password_sources,
-  vala_args: '--target-glib=2.50',  dependencies: password_deps,
+  vala_args: password_vala_args,  dependencies: password_deps,
   install: true,
 )

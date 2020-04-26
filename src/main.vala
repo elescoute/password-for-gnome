@@ -17,14 +17,17 @@
  */
 
 int main (string[] args) {
+
 	var app = new Gtk.Application ("org.emilien.Password", ApplicationFlags.FLAGS_NONE);
 	app.activate.connect (() => {
 		var win = app.active_window;
 		if (win == null) {
 			win = new Password.Window (app);
+			win.set_default_size(500,400);
+			win.set_position(CENTER);
 		}
 		win.present ();
 	});
-
+    app.hold();
 	return app.run (args);
 }
