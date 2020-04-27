@@ -1,4 +1,5 @@
 password_sources = [
+  'config.vapi',
   'main.vala',
   'window.vala',
   'mdpCalcul.vala',
@@ -22,7 +23,13 @@ password_vala_args = [
 	'--vapidir', meson.current_source_dir(),
 ]
 
+password_c_args = [
+	'-include', 'config.h',
+]
+
 executable('password', password_sources,
+  include_directories: config_h_dir,
   vala_args: password_vala_args,  dependencies: password_deps,
+  c_args: password_c_args,
   install: true,
 )

@@ -33,6 +33,7 @@ namespace Password {
 	[GtkTemplate (ui = "/org/emilien/Password/window.ui")]
 
 	public class Window : Gtk.ApplicationWindow {
+
 		//WIDGETS
 
 		[GtkChild] Gtk.HeaderBar headerbar;
@@ -109,13 +110,13 @@ namespace Password {
             motDePasseAleatoire.set_label("");
             boutonModeCalculateur.set_image(iconeCalculateur);
             boutonModeCalculateur.set_always_show_image(true);
-            boutonModeCalculateur.set_label(" Calculator");
+            boutonModeCalculateur.set_label(_(" Calculator"));
             boutonModeGenerateur.set_image(iconeGenerateur);
             boutonModeGenerateur.set_always_show_image(true);
-            boutonModeGenerateur.set_label(" Generator");
+            boutonModeGenerateur.set_label(_(" Generator"));
             boutonModeReglages.set_image(iconeReglages);
             boutonModeReglages.set_always_show_image(true);
-            boutonModeReglages.set_label(" Settings");
+            boutonModeReglages.set_label(_(" Settings"));
 
             //CONFIGURATION
 
@@ -182,7 +183,7 @@ namespace Password {
         void basculModeCalculateur()
         {
             iconeBoutonMenuMode.set_from_icon_name("accessories-calculator-symbolic", BUTTON);
-            headerbar.set_subtitle("Password calculator");
+            headerbar.set_subtitle(_("Password calculator"));
             //modeCalculateur=true;modeGenerateur=false;
             if(passwordCourt=="" && revealCopier.get_child_revealed()) revealCopier.set_reveal_child(false);
             if(passwordCourt!="" && !revealCopier.get_child_revealed()) revealCopier.set_reveal_child(true);
@@ -193,7 +194,7 @@ namespace Password {
         void basculModeGenerateur()
         {
             iconeBoutonMenuMode.set_from_icon_name("applications-science-symbolic", BUTTON);
-            headerbar.set_subtitle("Password generator");
+            headerbar.set_subtitle(_("Password generator"));
             if(pass=="" && revealCopier.get_child_revealed()) revealCopier.set_reveal_child(false);
             if(pass!="" && !revealCopier.get_child_revealed()) revealCopier.set_reveal_child(true);
             fenetre.set_visible_child(fenetreGenerateur);
@@ -202,7 +203,7 @@ namespace Password {
         void basculModeReglages()
         {
             iconeBoutonMenuMode.set_from_icon_name("applications-system-symbolic", BUTTON);
-            headerbar.set_subtitle("Settings");
+            headerbar.set_subtitle(_("Settings"));
             fenetre.set_visible_child(fenetreScroll);
             revealCopier.set_reveal_child(false);
         }
@@ -215,7 +216,7 @@ namespace Password {
                    if(texteSecret.get_text()!="" && texteSecret.get_icon_name(SECONDARY)==null) texteSecret.set_icon_from_icon_name(SECONDARY,"edit-delete-symbolic");
                }
              if(texteAlias.get_text()=="" || texteSecret.get_text()==""){ //SI AU MOINS UN DES DEUX VIDES
-                    motDePasse.set_label("your password");
+                    motDePasse.set_label(_("your password"));
                     passwordCourt="";
                     revealCopier.set_reveal_child(false);
                     if(texteAlias.get_text()=="" && texteAlias.get_icon_name(SECONDARY)!=null) texteAlias.set_icon_from_icon_name(SECONDARY,null);
@@ -224,7 +225,7 @@ namespace Password {
 
              if(texteAlias.get_text()=="" && texteSecret.get_text()==""){ //SI LES DEUX VIDES
                    if(motDePasseAleatoire.get_label()=="") iconeBoutonNettoyer.set_from_icon_name("user-trash-symbolic", BUTTON);
-                   motDePasse.set_label("your password");
+                   motDePasse.set_label(_("your password"));
                    passwordCourt="";
                    revealCopier.set_reveal_child(false);
                }
@@ -384,8 +385,8 @@ namespace Password {
             var program_name = "Password";
             Gtk.show_about_dialog (this,
                                "program-name", program_name,
-                               //"logo-icon-name", password_logo,
-                               "version", "1.0",
+                               "logo-icon-name", Config.APP_ID,
+                               "version", Config.VERSION,
                                "comments", "Calculator and random generator password for GNOME.",
                                "copyright", COPYRIGHT,
                                "authors", AUTHORS,
@@ -394,15 +395,6 @@ namespace Password {
                                "website", "https://gitlab.com/elescoute/password-for-gnome-vala",
                                "translator-credits", "translator-credits",
                                null);
-            /*
-            fenetreAbout.set_logo(Gdk::Pixbuf::create_from_resource("/org/emilien/password/org.emilien.password.svg", -1, 128, true));
-            fenetreAbout.set_version(PACKAGE_VERSION);
-            fenetreAbout.set_license_type(Gtk::LICENSE_LGPL_3_0);
-            fenetreAbout.set_program_name("Password");
-            fenetreAbout.set_comments(_("Calculator and random generator password for GNOME"));
-            fenetreAbout.set_copyright("Copyright © 2020 Emilien Lescoute");
-            fenetreAbout.set_website("https://gitlab.com/elescoute/password-for-gnome");
-            fenetreAbout.run();*/
             }
 
         void quitter()
@@ -416,7 +408,7 @@ namespace Password {
         {
             clipboard("");
 
-            if(switchNotifications.get_state()) envoiNotification("Password deleted");//SI FENETRE HIDE, PROGRAMME S'ARRÊTE TOUT DE SUITE (???)
+            if(switchNotifications.get_state()) envoiNotification(_("Password deleted"));//SI FENETRE HIDE, PROGRAMME S'ARRÊTE TOUT DE SUITE (???)
 
             attendreAvanDeFermer=false;
             if(quitterAppli) GLib.Timeout.add(1000, () => {quitter(); return false;});
@@ -430,7 +422,7 @@ namespace Password {
             texteSecret.set_text("");
             passwordCourt="";
             randomPassword="";
-            motDePasse.set_label("your password");
+            motDePasse.set_label(_("your password"));
             motDePasseAleatoire.set_label("");
             revealCopier.set_reveal_child(false);
         }
@@ -440,7 +432,7 @@ namespace Password {
             if(fenetre.get_visible_child_name()=="pageCalculateur" && passwordCourt!="") clipboard(passwordCourt);
             if(fenetre.get_visible_child_name()=="pageGenerateur" && pass!="") clipboard(pass);
 
-            if(switchNotifications.get_state()) envoiNotification("Password copied to the clipboard");
+            if(switchNotifications.get_state()) envoiNotification(_("Password copied to the clipboard"));
 
             if(switchSuppression.get_state()){
                 if(!quitterAppli) attendreAvanDeFermer=true;//AU CAS OU L'UTILISATEUR VEUILLE FERMER L'APPLI APRES AVOIR APPUYER SUR COPIE

@@ -293,7 +293,6 @@
                     <property name="halign">center</property>
                     <property name="margin_top">10</property>
                     <property name="margin_bottom">10</property>
-                    <property name="xalign">0,50000000000000000000</property>
                     <property name="placeholder_text" translatable="yes">alias</property>
                   </object>
                   <packing>
@@ -311,7 +310,6 @@
                     <property name="margin_bottom">10</property>
                     <property name="visibility">False</property>
                     <property name="invisible_char">●</property>
-                    <property name="xalign">0,50000000000000000000</property>
                     <property name="placeholder_text" translatable="yes">passphrase</property>
                   </object>
                   <packing>
@@ -553,7 +551,7 @@
                                 <property name="halign">start</property>
                                 <property name="margin_start">10</property>
                                 <property name="hexpand">True</property>
-                                <property name="label" translatable="yes">Salt	</property>
+                                <property name="label" translatable="yes">Salt</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -963,6 +961,7 @@
                               <object class="GtkScale" id="scaleTemps">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
+                                <property name="valign">center</property>
                                 <property name="margin_left">10</property>
                                 <property name="margin_right">10</property>
                                 <property name="margin_start">10</property>
@@ -1094,6 +1093,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Menu</property>
             <property name="popover">popMenu</property>
             <child>
               <object class="GtkImage" id="iconeBoutonMenu">
@@ -1112,6 +1112,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Change mode</property>
             <property name="popover">popMenuMode</property>
             <child>
               <object class="GtkImage" id="iconeBoutonMenuMode">

@@ -1,3 +1,6 @@
+subdir('icons')
+
+
 desktop_file = i18n.merge_file(
   input: 'org.emilien.Password.desktop.in',
   output: 'org.emilien.Password.desktop',

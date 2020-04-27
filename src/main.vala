@@ -18,6 +18,11 @@
 
 int main (string[] args) {
 
+    Environment.set_prgname (Config.APP_ID);
+    Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.GNOMELOCALEDIR);
+    Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
+    Intl.textdomain (Config.GETTEXT_PACKAGE);
+
 	var app = new Gtk.Application ("org.emilien.Password", ApplicationFlags.FLAGS_NONE);
 	app.activate.connect (() => {
 		var win = app.active_window;
