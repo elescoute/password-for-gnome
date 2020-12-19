@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: password\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-26 23:37+0200\n"
-"PO-Revision-Date: 2020-04-26 23:46+0200\n"
+"POT-Creation-Date: 2020-12-19 12:26+0100\n"
+"PO-Revision-Date: 2020-12-19 12:26+0100\n"
 "Last-Translator: Emilien Lescoute <emilien.lescoute@lilo.org>\n"
 "Language-Team: French <emilien.lescoute@lilo.org>\n"
 "Language: fr\n"
@@ -17,15 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #: data/org.emilien.Password.desktop.in:3
 msgid "Password"
 msgstr "Password"
-
-#: data/org.emilien.Password.desktop.in:9
-msgid "org.emilien.Password"
-msgstr "org.emilien.Password"
 
 #: src/window.ui:29
 msgid "Clean password and entries"
@@ -39,7 +35,7 @@ msgstr "Copier le mot de passe"
 msgid "Mask or unmask password"
 msgstr "Afficher / Masquer le mot de passe"
 
-#: src/window.ui:127 src/window.ui:229 src/window.ui:1039 src/window.vala:206
+#: src/window.ui:127 src/window.ui:229 src/window.ui:1082 src/window.vala:210
 msgid "Settings"
 msgstr "Réglages"
 
@@ -69,8 +65,8 @@ msgstr "phrase secrète"
 
 #. SI AU MOINS UN DES DEUX VIDES
 #. SI LES DEUX VIDES
-#: src/window.ui:327 src/window.vala:219 src/window.vala:228
-#: src/window.vala:434
+#: src/window.ui:327 src/window.vala:223 src/window.vala:232
+#: src/window.vala:453
 msgid "your password"
 msgstr "votre mot de passe"
 
@@ -131,53 +127,60 @@ msgid "Remove numerics [0-9]"
 msgstr "Enlever chiffres [0-9]"
 
 #: src/window.ui:870
+msgid "Pin code only [0-9]"
+msgstr "Chiffres seulement [0-9]"
+
+#: src/window.ui:913
 msgid "Remove special characters [=/+]"
 msgstr "Enlever les caractères spéciaux [=/+]"
 
-#: src/window.ui:913
+#: src/window.ui:956
 msgid "Delete password"
 msgstr "Supprimer le mot de passe"
 
-#: src/window.ui:952
+#: src/window.ui:995
 msgid "after:"
 msgstr "après :"
 
-#: src/window.ui:1002
+#: src/window.ui:1045
 msgid "Send notifications"
 msgstr "Envoyer notifications"
 
-#: src/window.ui:1089 src/window.vala:186
+#: src/window.ui:1132 src/window.vala:190
 msgid "Password calculator"
 msgstr "Calculateur de mot de passe"
 
-#: src/window.ui:1096
+#: src/window.ui:1139
 msgid "Menu"
 msgstr "Menu"
 
-#: src/window.ui:1115
+#: src/window.ui:1158
 msgid "Change mode"
 msgstr "Changer de mode"
 
-#: src/window.vala:113
+#: src/window.vala:114
 msgid " Calculator"
 msgstr " Calculateur"
 
-#: src/window.vala:116
+#: src/window.vala:117
 msgid " Generator"
 msgstr " Générateur"
 
-#: src/window.vala:119
+#: src/window.vala:120
 msgid " Settings"
 msgstr " Réglages"
 
-#: src/window.vala:197
+#: src/window.vala:201
 msgid "Password generator"
 msgstr "Générateur de mot de passe"
 
-#: src/window.vala:420
+#: src/window.vala:439
 msgid "Password deleted"
 msgstr "Mot de passe effacé"
 
-#: src/window.vala:444
+#: src/window.vala:463
 msgid "Password copied to the clipboard"
 msgstr "Mot de passe copié dans le presse-papiers"
+
+#~ msgid "org.emilien.Password"
+#~ msgstr "org.emilien.Password"
