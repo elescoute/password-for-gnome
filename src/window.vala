@@ -78,6 +78,7 @@ namespace Password {
 		[GtkChild] Gtk.Switch switchMajuscules;
 		[GtkChild] Gtk.Switch switchChiffres;
 		[GtkChild] Gtk.Switch switchSpeciaux;
+		[GtkChild] Gtk.Switch switchPin;
 		[GtkChild] Gtk.Switch switchSuppression;
 		[GtkChild] Gtk.Scale scaleTemps;
 
@@ -152,8 +153,11 @@ namespace Password {
             scaleLongueur.value_changed.connect(() => {chgt=2;chgtReglages();});
             switchMinuscules.notify["active"].connect(basculSwitchMinuscules);
             switchMajuscules.notify["active"].connect(basculSwitchMajuscules);
-            switchChiffres.notify["active"].connect(() => {chgt=2;chgtReglages();});
+            //switchChiffres.notify["active"].connect(() => {chgt=2;chgtReglages();});
+            switchChiffres.notify["active"].connect(basculSwitchChiffres);
+            switchPin.notify["active"].connect(basculSwitchPin);
             switchSpeciaux.notify["active"].connect(() => {chgt=2;chgtReglages();});
+            //switchPin.notify["active"].connect(() => {chgt=2;chgtReglages();});
             switchSuppression.notify["active"].connect(() => {chgt=0;chgtReglages();});
             scaleTemps.value_changed.connect(() => {chgt=0;chgtReglages();});
             boutonQuitter.clicked.connect(quitter);
@@ -169,14 +173,14 @@ namespace Password {
                 if(texteAlias.get_text()!="" && texteSecret.get_text()!="") motDePasse.set_label(calculMask(switchMask.get_state()));
                 if(motDePasseAleatoire.get_text()!="") motDePasseAleatoire.set_label(mdpAleatoire(false, (int) scaleLongueur.get_value(), switchMask.get_state(),//
              switchMinuscules.get_state(), switchMajuscules.get_state(), switchChiffres.get_state(),//
-             switchSpeciaux.get_state())); //ON CHANGE L'AFFICHAGE DU MOT DE PASSE ALEATOIRE
+             switchSpeciaux.get_state(), switchPin.get_state() )); //ON CHANGE L'AFFICHAGE DU MOT DE PASSE ALEATOIRE
             }
             else{
                 iconeSwitchMask.set_from_icon_name("view-conceal-symbolic",MENU);
                 if(texteAlias.get_text()!="" && texteSecret.get_text()!="") motDePasse.set_label(calculMask(switchMask.get_state()));
                 if(motDePasseAleatoire.get_text()!="") motDePasseAleatoire.set_label(mdpAleatoire(false, (int) scaleLongueur.get_value(), switchMask.get_state(),//
              switchMinuscules.get_state(), switchMajuscules.get_state(), switchChiffres.get_state(),//
-             switchSpeciaux.get_state())); //ON CHANGE L'AFFICHAGE DU MOT DE PASSE ALEATOIRE
+             switchSpeciaux.get_state(), switchPin.get_state() )); //ON CHANGE L'AFFICHAGE DU MOT DE PASSE ALEATOIRE
             }
         }
 
@@ -254,7 +258,7 @@ namespace Password {
             motDePasse.set_label(mdpCalcul(texteAlias.get_text(), texteSecret.get_text(), switchMask.get_state(),//
                 comboHachage.get_active(), switchConversion.get_state(), (int) scaleLongueur.get_value(),//
                 texteSalage.get_text(), switchMinuscules.get_state(), switchMajuscules.get_state(),//
-                switchChiffres. get_state(), switchSpeciaux.get_state() ));
+                switchChiffres. get_state(), switchSpeciaux.get_state(), switchPin.get_state() ));
             revealCopier.set_reveal_child(true);
         }
 
@@ -263,7 +267,7 @@ namespace Password {
             iconeBoutonNettoyer.set_from_icon_name("user-trash-full-symbolic", BUTTON);
             motDePasseAleatoire.set_label(mdpAleatoire(true, (int) scaleLongueur.get_value(), switchMask.get_state(),//
                 switchMinuscules.get_state(), switchMajuscules.get_state(), switchChiffres.get_state(),//
-                switchSpeciaux.get_state()));
+                switchSpeciaux.get_state(),switchPin.get_state() ));
             revealCopier.set_reveal_child(true);
         }
 
@@ -291,12 +295,12 @@ namespace Password {
                 motDePasse.set_label(mdpCalcul(texteAlias.get_text(), texteSecret.get_text(), switchMask.get_state(),//
                     comboHachage.get_active(), switchConversion.get_state(), (int) scaleLongueur.get_value(),//
                     texteSalage.get_text(), switchMinuscules.get_state(), switchMajuscules.get_state(),//
-                    switchChiffres. get_state(), switchSpeciaux.get_state() ));
+                    switchChiffres. get_state(), switchSpeciaux.get_state(), switchPin.get_state() ));
             }
             if(chgt==2 && motDePasseAleatoire.get_text()!=""){
                 motDePasseAleatoire.set_label(mdpAleatoire(false, (int) scaleLongueur.get_value(), switchMask.get_state(),//
                     switchMinuscules.get_state(), switchMajuscules.get_state(), switchChiffres.get_state(),//
-                    switchSpeciaux.get_state())); //ON CHANGE L'AFFICHAGE DU MOT DE PASSE ALEATOIRE
+                    switchSpeciaux.get_state(), switchPin.get_state() )); //ON CHANGE L'AFFICHAGE DU MOT DE PASSE ALEATOIRE
             }
         }
 
@@ -315,6 +319,28 @@ namespace Password {
         {
             if(switchMajuscules.get_state() && switchMinuscules.get_state()){
                 switchMinuscules.set_state(false);
+            }
+            else{
+                chgt=2;
+                chgtReglages();
+            }
+        }
+
+        void basculSwitchChiffres()
+        {
+            if(switchChiffres.get_state() && switchPin.get_state()){
+                switchPin.set_state(false);
+            }
+            else{
+                chgt=2;
+                chgtReglages();
+            }
+        }
+
+        void basculSwitchPin()
+        {
+            if(switchPin.get_state() && switchChiffres.get_state()){
+                switchChiffres.set_state(false);
             }
             else{
                 chgt=2;
@@ -341,6 +367,7 @@ namespace Password {
                 switchSuppression.set_state(bool.parse(dis.read_line(null)));
                 scaleTemps.set_value(dis.read_line(null).to_int());
                 switchNotifications.set_state(bool.parse(dis.read_line(null)));
+                switchPin.set_state(bool.parse(dis.read_line(null)));
             }
 
             //PRE-REMPLISSAGE ALIAS
@@ -371,6 +398,7 @@ namespace Password {
             config += switchSuppression.get_state().to_string() + "\n";
             config += scaleTemps.get_value().to_string() + "\n";
             config += switchNotifications.get_state().to_string() + "\n";
+            config += switchPin.get_state().to_string() + "\n";
             FileUtils.set_contents (fichierConfig, config);
         }
 

@@ -1,14 +1,16 @@
-string mdpAleatoire(bool generate, int length, bool mask, bool remLower, bool remUpper, bool remNum, bool remSpec)
+string mdpAleatoire(bool generate, int length, bool mask, bool remLower, bool remUpper, bool remNum, bool remSpec, bool onlyPin)
 {
 
 
 
     string alphanum = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz/*-+=$@:;.,!?~&#|<>";
+    string num = "0123456789";
 
     if(generate){
         char s[30];
         for (int i = 0; i < 30; ++i) {
-            s[i] =alphanum[Random.int_range(0,alphanum.length - 1)];
+            if(!onlyPin) s[i] = alphanum[Random.int_range(0,alphanum.length - 1)];
+            if(onlyPin) s[i] = num[Random.int_range(0,num.length - 1)];
         }
 
         s[30] = 0;

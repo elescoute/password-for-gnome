@@ -9,7 +9,7 @@ const char base64_url_alphabet[] = {
 
 string passwordQMask;
 
-string mdpCalcul(string mot1, string mot2, bool mask, int hash, bool conversion, int length, string saltString, bool remLower, bool remUpper, bool remNum, bool remSpec) {
+string mdpCalcul(string mot1, string mot2, bool mask, int hash, bool conversion, int length, string saltString, bool remLower, bool remUpper, bool remNum, bool remSpec, bool onlyPin) {
 
 
     string output = "";
@@ -82,6 +82,41 @@ string mdpCalcul(string mot1, string mot2, bool mask, int hash, bool conversion,
         //REMOVE UPPER
 
         if(remUpper) passwordCourt = passwordCourt.ascii_up();
+
+        //ONLY PIN
+
+        if(onlyPin) {
+            passwordCourt = passwordCourt.ascii_up();
+            passwordCourt = passwordCourt.replace("+", "0");
+            passwordCourt = passwordCourt.replace("/", "1");
+            passwordCourt = passwordCourt.replace("=", "2");
+            passwordCourt = passwordCourt.replace("A", "3");
+            passwordCourt = passwordCourt.replace("B", "4");
+            passwordCourt = passwordCourt.replace("C", "5");
+            passwordCourt = passwordCourt.replace("D", "6");
+            passwordCourt = passwordCourt.replace("E", "7");
+            passwordCourt = passwordCourt.replace("F", "8");
+            passwordCourt = passwordCourt.replace("G", "9");
+            passwordCourt = passwordCourt.replace("H", "0");
+            passwordCourt = passwordCourt.replace("I", "1");
+            passwordCourt = passwordCourt.replace("J", "2");
+            passwordCourt = passwordCourt.replace("K", "3");
+            passwordCourt = passwordCourt.replace("L", "4");
+            passwordCourt = passwordCourt.replace("M", "5");
+            passwordCourt = passwordCourt.replace("N", "6");
+            passwordCourt = passwordCourt.replace("O", "7");
+            passwordCourt = passwordCourt.replace("P", "8");
+            passwordCourt = passwordCourt.replace("Q", "9");
+            passwordCourt = passwordCourt.replace("R", "0");
+            passwordCourt = passwordCourt.replace("S", "1");
+            passwordCourt = passwordCourt.replace("T", "2");
+            passwordCourt = passwordCourt.replace("U", "3");
+            passwordCourt = passwordCourt.replace("V", "4");
+            passwordCourt = passwordCourt.replace("W", "5");
+            passwordCourt = passwordCourt.replace("X", "6");
+            passwordCourt = passwordCourt.replace("Y", "7");
+            passwordCourt = passwordCourt.replace("Z", "8");
+      }
 
         //CREATION QSTRING AVEC POINTS
 
