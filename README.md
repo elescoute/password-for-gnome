@@ -1,3 +1,3 @@
 # Password for GNOME
 
-# PROJECT MOVED TO GITLAB : https://gitlab.com/elescoute/password-for-gnome-vala
+# Project moved to Gitlab : https://gitlab.com/elescoute/password-for-gnome-vala
